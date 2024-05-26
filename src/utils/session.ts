@@ -7,6 +7,5 @@ export const getCookie = (name: string) => {
 
 export const checkLoggedInSession = (token: string | undefined | null) => {
   if (!token) return false;
-  console.log(import.meta.env.ADMIN_TOKEN, token);
   return token === import.meta.env.ADMIN_TOKEN;
 };
