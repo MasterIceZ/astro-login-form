@@ -32,7 +32,7 @@ export default function LoginForm() {
             type="text"
             id="userName"
             name="userName"
-            placeholder="username"
+            placeholder="Username"
             required
             className="border rounded-md p-2"
           />
@@ -41,11 +41,11 @@ export default function LoginForm() {
             type="password"
             id="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             required
             className="rounded-md border p-2"
           />
-          <button className="bg-blue-400 rounded-md p-2 fond-semibold text-white">
+          <button className="bg-blue-400 rounded-md p-2 fond-semibold text-white hover:bg-blue-500 hover:text-gray-100">
             Login!
           </button>
         </form>
