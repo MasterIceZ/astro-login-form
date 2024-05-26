@@ -1,0 +1,26 @@
+---
+import LoginForm from "../../components/LoginForm";
+
+import { checkLoggedInSession } from "../../utils/session";
+
+let loggedIn: boolean = false;
+
+if (
+  Astro.cookies.has("adminLoggedInToken") &&
+  checkLoggedInSession(Astro.cookies.get("adminLoggedInToken")?.value)
+) {
+  loggedIn = true;
+}
+---
+
+<main class="text-xl">
+  {
+    loggedIn ? (
+      <script>
+        alert("You are already logged in!"); window.location.href = "/";
+      </script>
+    ) : (
+      <LoginForm client:load />
+    )
+  }
+</main>

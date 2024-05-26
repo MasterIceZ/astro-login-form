@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { checkLoggedInSession } from "../utils/session";
+
+let loggedIn: boolean = false;
+
+if (
+  Astro.cookies.has("adminLoggedInToken") &&
+  checkLoggedInSession(Astro.cookies.get("adminLoggedInToken")?.value)
+) {
+  loggedIn = true;
+}
+---
+
+<Layout title="Welcome to Astro.">
+  {
+    loggedIn ? (
+      <div class="min-h-screen w-full flex justify-center items-center flex-col gap-y-2">
+        <h1 class="text-white font-bold text-6xl">Logged In!</h1>
+        <button
+          class="p-2 text-xl hover:bg-slate-600 bg-slate-500 text-white hover:text-gray-100 rounded-lg"
+          id="removeSession">
+          remove session
+        </button>
+      </div>
+    ) : (
+      <script>
+        alert("You are not logged in!"); window.location.href = "/login";
+      </script>
+    )
+  }
+  <script>
+    document.getElementById("removeSession")!.addEventListener("click", () => {
+      document.cookie =
+        "adminLoggedInToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "/login";
+    });
+  </script>
+</Layout>
